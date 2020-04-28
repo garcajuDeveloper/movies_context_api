@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {GenreContext} from '../context/GenreContext';
 
 const ShowForm = () => {
+
+    const {genreList} = useContext(GenreContext);
+    //console.log(genreList); 
+
     return (  
         <form
-            className="col-12"
+            className="col-12 mt-4"
         >
             <div className="row">
                 <div className="col-md-4">
@@ -20,6 +25,12 @@ const ShowForm = () => {
                         name="genre"
                     >
                         <option value="">-- Select the genre --</option>
+                        {genreList.map(genre => (
+                            <option 
+                                key={genre.id}
+                                value={genre.name}
+                            >{genre.name}</option>
+                        ))}
                     </select>
                 </div>
                 <div className="col-md-4">
